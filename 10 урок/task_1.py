@@ -13,10 +13,7 @@
 # aym jpvezfqexlv
 # iuy qnikkgxvxfxtxv
 
-# import random
 
-
-# Здесь пишем код
 import random
 import string
 
