@@ -12,3 +12,8 @@ def class_timestamp():
     yield "Started at " + time.ctime(start_time)
     end_time = time.time()
     print("\nFinished at " + time.ctime(end_time))
+
+
+def pytest_configure(config):
+    config.addinivalue_line("markers", "smoke: mark test as smoke")
+    config.addinivalue_line("markers", "acceptance: mark test as acceptance")
