@@ -17,15 +17,16 @@ from time import sleep
 
 service = Service('E:/Рабочая/Программы/Python/chromedriver.exe')
 driver = webdriver.Chrome(service=service) # Инициализация драйвера
+wait = WebDriverWait(driver,10)
 try:
     driver.get("https://sbis.ru/") # Переход на https://sbis.ru/
 # Переход в раздел "Контакты"
-    contacts_link = WebDriverWait(driver, 10).until(
+    contacts_link = wait.until(
     EC.presence_of_element_located((By.LINK_TEXT, "Контакты")))
     contacts_link.click()
 
 # Найти баннер Тензор, кликнуть по нему
-    tensor_banner = WebDriverWait(driver, 10).until(
+    tensor_banner = wait.until(
     EC.presence_of_element_located((By.XPATH, '//img[@alt="Разработчик системы СБИС — компания «Тензор»"]')))
     sleep(2)
     tensor_banner.click()
@@ -43,11 +44,11 @@ try:
     sleep(2)
 
 # Перейдите в этом блоке в "Подробнее" и убедитесь, что открывается https://tensor.ru/about
-    tensor_link = WebDriverWait(driver, 10).until(
+    tensor_link = wait.until(
     EC.presence_of_element_located((By.XPATH, '//a[contains(text(), "Подробнее")]')))
     tensor_link.click()
     sleep(2)
-    WebDriverWait(driver, 10).until(EC.url_contains("tensor.ru/about"))
+    wait.until(EC.url_contains("tensor.ru/about"))
     assert 'https://tensor.ru/about/' in driver.current_url
 
 
